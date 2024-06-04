@@ -279,7 +279,7 @@ func buildConfigFromCmd(services, nodes stringList) (*config.Config, error) {
 			delete(mh, "limiter.conn.out")
 		}
 
-		if climit := mdutil.GetInt(md, "climiter"); climit > 0 {
+		if climit := mdutil.GetInt(md, "climiter"); climit >= 0 {
 			limiter := &config.LimiterConfig{
 				Name:   fmt.Sprintf("%sclimiter-%d", namePrefix, len(cfg.CLimiters)),
 				Limits: []string{fmt.Sprintf("%s %d", conn.GlobalLimitKey, climit)},
